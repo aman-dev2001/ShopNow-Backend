@@ -1,0 +1,32 @@
+{
+  "name": "shopnow-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "seed": "node seeder.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aman-dev2001/ShopNow-Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/aman-dev2001/ShopNow-Backend/issues"
+  },
+  "homepage": "https://github.com/aman-dev2001/ShopNow-Backend#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.4",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.10.2",
+    "nodemon": "^3.1.14"
+  }
+}
