@@ -4,6 +4,8 @@ import dotenv from 'dotenv'
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js"
 import productRoutes from "./routes/productRoutes.js";
+import cartRoutes from "./routes/cartRoutes.js";
+import checkoutRoutes from "./routes/checkOutRoutes.js"
 
 const app = express();
 
@@ -23,6 +25,8 @@ app.get("/", (req, res) => {
 
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/cart", cartRoutes);
+app.use("/api/checkout", checkoutRoutes);
 
 //404 
 app.use((req, res) => {
@@ -31,16 +35,17 @@ app.use((req, res) => {
     });
 });
 
-// Global error handling 
+// Global error handling
 
 app.use((err, req, res, next) => {
-    console.error(err.stock);
+    console.error(err.stack);
     res.status(err.statusCode || 500).json({
-        message: err.status || "Internal Server Error"
+        message: err.message || "Internal Server Error"
     });
 });
 
 // console.log(process.env.PORT)
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
