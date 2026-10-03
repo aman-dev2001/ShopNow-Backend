@@ -31,7 +31,8 @@ const orderItemSchema = new mongoose.Schema({
 
     quantity: {
         type: Number,
-        required: true
+        required: true,
+        min: 1
     },
 },
     { _id: false }

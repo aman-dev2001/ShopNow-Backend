@@ -49,6 +49,7 @@ router.put("/:id/pay", protect, async (req, res) => {
     try {
 
         const checkout = await CheckOut.findById(req.params.id);
+
         if (!checkout) {
             return res.status(404).json({
                 message: "checkout not found"
@@ -101,7 +102,11 @@ router.post("/:id/finalize", protect, async (req, res) => {
                 totalPrice: checkout.totalPrice,
                 isPaid: checkout.isPaid,
                 paidAt: checkout.paidAt,
+                isDelivered: false,
+                paymentStatus: "Paid",
+                paymentDetails: checkout.paymentDetails,
             });
+
             // Mark the checkOut as finalized
             checkout.isFinalized = true;
             checkout.finalizedAt = Date.now();
@@ -112,7 +117,9 @@ router.post("/:id/finalize", protect, async (req, res) => {
             await Cart.findOneAndDelete({
                 user: checkout.user
             });
+
             res.status(201).json(finalOrder);
+
         } else if (checkout.isFinalized) {
             res.status(400).json({
                 message: "checkout allready finalized"
